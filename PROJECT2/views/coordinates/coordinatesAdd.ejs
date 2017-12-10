@@ -1,0 +1,42 @@
+<%- include("../includes/header.ejs", {title:"Add New Coordinate"}); %>
+    <h1>Add New Coordinate</h1>
+    <form action="/coordinates/insert" method="get">
+        Latitude: <input id="lat" name="lat" type="text" />
+        <br />
+        <br />
+        Longitude: <input id="lon" name="lon" type="text" />
+        <br />
+        <br />
+        Comments: <input id="comments" name="comments" type="text" />
+        <br />
+        <br />
+        Routes:
+        <select id="routeID" name="routeID" multiple="multiple">
+            <% for(var i=0; routes.length > i; i++ ) { %>
+                <option value="<%= routes[i].routeID %>"><%= routes[i].routeName %></option>
+            <% } %>
+        </select>
+        <br /><br />
+        Pictures:
+        <select id="pictureID" name="pictureID" multiple="multiple">
+            <% for(var i=0; routes.length > i; i++ ) { %>
+            <option value="<%= pictures[i].pictureID %>"><%= pictures[i].picName %></option>
+            <% } %>
+        </select>
+        <br /><br />
+        <!-- Initialize the multiselect plugin: -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#routeID').multiselect();
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#pictureID').multiselect();
+            });
+        </script>
+        <input type="submit" />
+    </form>
+<br />
+<a href="/routes/all"><< back</a>
+<%- include("../includes/footer.ejs"); %>

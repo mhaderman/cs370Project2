@@ -1,0 +1,19 @@
+<%- include("../includes/header.ejs", {title:"Coordinate - " + coordinate[0].lat + ", " + coordinate[0].lon}); %>
+
+<h1><%= coordinate[0].lat + ', ' + coordinate[0].lon %></h1>
+<p><%= coordinate[0].comments %></p>
+    <ul>
+        <h2>Routes</h2>
+        <% for(var i = 0; routes.length > i; i++){ %>
+        <li><a href="/routes/?routeID=<%= routes[i].routeID %>"><%= routes[i].routeName %></a></li>
+        <% } %>
+        <h2>Pictures</h2>
+        <% for(var i = 0; pictures.length > i; i++){ %>
+            <li><a href="/pictures/?pictureID=<%= pictures[i].pictureID %>"> <%= pictures[i].picName %> </a></li>
+        <% } %>
+
+    </ul>
+    <br />
+<a href="/coordinates/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

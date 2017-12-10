@@ -1,0 +1,26 @@
+<%- include("../includes/header.ejs", {title:"Coordinates - View All"}); %>
+
+<h1>Coordinates</h1>
+        <a href="/coordinates/add">Add New Coordinate</a> <br />
+
+        <br />
+
+        <table border="1">
+            <tr><th>Name</th><th>Actions</th></tr>
+            <% for(var i=0; result.length > i; i++ ) { %>
+            <tr>
+                <td><a href="/coordinates/?coordID=<%= result[i].coordID %>"><%= result[i].lat + ', ' + result[i].lon %></a></td>
+                <td>
+                    <button onclick="event.preventDefault();window.location.href='/coordinates/edit/?coordID=<%= result[i].coordID %>'">Edit</button>
+                    <form action="/coordinates/delete/" style="display:inline;">
+                        <input type="hidden" name="coordID" id="coordID" value="<%= result[i].coordID %>" />
+                        <input type="submit" value="Delete"/>
+                    </form>
+
+                </td>
+            </tr>
+            <% } %>
+        </table>
+<br />
+<a href="/"><< back</a>
+<%- include("../includes/footer.ejs"); %>

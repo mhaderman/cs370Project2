@@ -1,0 +1,52 @@
+<%- include("../includes/header.ejs", {title:"Add New Picture"}); %>
+    <h1>Add New Picture</h1>
+    <form action="/pictures/insert" method="get">
+        Name: <input id="picName" name="picName" type="text" />
+        <br />
+        <br />
+        URL: <input id="path" name="path" type="text" />
+        <br />
+        <br />
+        Users:
+        <select id="userID" name="userID" multiple="multiple">
+            <% for(var i=0; users.length > i; i++ ) { %>
+                <option value="<%= users[i].userID %>"><%= users[i].email %></option>
+            <% } %>
+        </select>
+        <br /><br />
+        Routes:
+        <select id="routeID" name="routeID" multiple="multiple">
+            <% for(var i=0; routes.length > i; i++ ) { %>
+                <option value="<%= routes[i].routeID %>"><%= routes[i].routeName %></option>
+            <% } %>
+        </select>
+        <br /><br />
+        Coordinates:
+        <select id="coordID" name="coordID" multiple="multiple">
+            <% for(var i=0; coordinates.length > i; i++ ) { %>
+            <option value="<%= coordinates[i].coordID %>"><%= coordinates[i].lat + ', ' + coordinates[i].lon %></option>
+            <% } %>
+        </select>
+        <!-- Initialize the multiselect plugin: -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#userID').multiselect();
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#routeID').multiselect();
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#coordID').multiselect();
+            });
+        </script>
+
+        <br /><br />
+        <input type="submit" />
+    </form>
+<br />
+<a href="/routes/all"><< back</a>
+<%- include("../includes/footer.ejs"); %>

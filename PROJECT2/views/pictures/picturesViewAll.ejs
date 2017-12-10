@@ -1,0 +1,26 @@
+<%- include("../includes/header.ejs", {title:"Pictures - View All"}); %>
+
+<h1>Pictures</h1>
+        <a href="/pictures/add">Add New Picture</a> <br />
+
+        <br />
+
+        <table border="1">
+            <tr><th>Name</th><th>Actions</th></tr>
+            <% for(var i=0; result.length > i; i++ ) { %>
+            <tr>
+                <td><a href="/pictures/?pictureID=<%= result[i].pictureID %>"><%= result[i].picName %></a></td>
+                <td>
+                    <button onclick="event.preventDefault();window.location.href='/pictures/edit/?pictureID=<%= result[i].pictureID %>'">Edit</button>
+                    <form action="/pictures/delete/" style="display:inline;">
+                        <input type="hidden" name="pictureID" id="pictureID" value="<%= result[i].pictureID %>" />
+                        <input type="submit" value="Delete"/>
+                    </form>
+
+                </td>
+            </tr>
+            <% } %>
+        </table>
+<br />
+<a href="/"><< back</a>
+<%- include("../includes/footer.ejs"); %>

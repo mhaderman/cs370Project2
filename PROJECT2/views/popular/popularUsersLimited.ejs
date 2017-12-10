@@ -1,0 +1,47 @@
+<%- include("../includes/header.ejs", {title:"Popular"}); %>
+
+<h1>Popular</h1>
+
+<br />
+<form action="/popular/limited" method="get">
+    <select id="limitTable1" name="limitTable1">
+        <option value="2">Users</option>
+        <option value="1">Routes</option>
+        <option value="3">Pictures</option>
+        <option value="4">Coordinates</option>
+    </select>
+    With
+    <input id="value" name="value" value="5" type="number"/>
+    or more
+    <select id="limitTable2" name="limitTable2">
+        <option value="1">Users</option>
+        <option value="2">Routes</option>
+        <option value="3">Pictures</option>
+        <option value="4">Coordinates</option>
+    </select>
+    <input value="Search" type="submit" />
+</form>
+<br />
+<table border="1">
+    <tr><th>Users</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/users/?userID=<%= result[i].userID %>"><%= result[i].email %></a></td>
+    </tr>
+    <% } %>
+</table>
+<br />
+
+<a href="/"><< back</a>
+<%- include("../includes/footer.ejs"); %>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#limitTable1').multiselect();
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#limitTable2').multiselect();
+    });
+</script>

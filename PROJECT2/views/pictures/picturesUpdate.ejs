@@ -1,0 +1,91 @@
+<%- include("../includes/header.ejs", {title: "Update " + picture[0].picName}); %>
+
+<h1>Update <%= picture[0].picName%></h1><br />
+<form action="/pictures/update" method="get">
+    <input type="hidden" id="pictureID" name="pictureID" value="<%= picture[0].pictureID %>">
+    Name: <input id="picName" name="picName" type="text" value="<%= picture[0].picName %>"/>
+    <br />
+    <h3>Users</h3>
+    Add
+    <select id="userID" name="userID" multiple="multiple">
+        <% for(var i=0; users.length > i; i++ ) { %>
+        <option value="<%= users[i].userID %>"><%= users[i].email %></option>
+        <% } %>
+    </select>
+    Remove
+    <select id="_userID" name="_userID" multiple="multiple">
+        <% for(var i=0; curUsers.length > i; i++ ) { %>
+        <option value="<%= curUsers[i].userID %>"><%= curUsers[i].email %></option>
+        <% } %>
+    </select>
+    <br />
+    <h3>Routes</h3>
+    Add
+    <select id="routeID" name="routeID" multiple="multiple">
+        <% for(var i=0; routes.length > i; i++ ) { %>
+        <option value="<%= routes[i].routeID %>"><%= routes[i].routeName %></option>
+        <% } %>
+    </select>
+    Remove
+    <select id="_routeID" name="_routeID" multiple="multiple">
+        <% for(var i=0; curRoutes.length > i; i++ ) { %>
+        <option value="<%= curRoutes[i].routeID %>"><%= curRoutes[i].routeName %></option>
+        <% } %>
+    </select>
+    <br />
+    <h3>Coordinates</h3>
+    Add
+    <select id="coordID" name="coordID" multiple="multiple">
+        <% for(var i=0; coordinates.length > i; i++ ) { %>
+        <option value="<%= coordinates[i].coordID %>"><%= coordinates[i].lat + ', ' + coordinates[i].lon %></option>
+        <% } %>
+    </select>
+    Remove
+    <select id="_coordID" name="_coordID" multiple="multiple">
+        <% for(var i=0; curCoordinates.length > i; i++ ) { %>
+        <option value="<%= curCoordinates[i].coordID %>"><%= curCoordinates[i].lat + ', ' + curCoordinates[i].lon %></option>
+        <% } %>
+    </select>
+    <br />
+    <!-- Initialize the multiselect plugin: -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#userID').multiselect();
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#routeID').multiselect();
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#coordID').multiselect();
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#_userID').multiselect();
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#_routeID').multiselect();
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#_coordID').multiselect();
+        });
+    </script>
+
+
+    <br />
+
+    <input type="submit" />
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>
+
+</html>

@@ -1,0 +1,41 @@
+<%- include("../includes/header.ejs", {title:"Add New User"}); %>
+    <h1>Add New User</h1>
+    <form action="/users/insert" method="get">
+        Email: <input id="email" name="email" type="text" />
+        <br />
+        <br />
+        Password: <input id="PW" name="PW" type="text" />
+        <br />
+        <br />
+        Routes:
+        <select id="routeID" name="routeID" multiple="multiple">
+            <% for(var i=0; routes.length > i; i++ ) { %>
+                <option value="<%= routes[i].routeID %>"><%= routes[i].routeName %></option>
+            <% } %>
+        </select>
+        <br /><br />
+        Pictures:
+        <select id="pictureID" name="pictureID" multiple="multiple">
+            <% for(var i=0; pictures.length > i; i++ ) { %>
+                <option value="<%= pictures[i].pictureID %>"><%= pictures[i].picName %></option>
+            <% } %>
+        </select>
+
+        <!-- Initialize the multiselect plugin: -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#routeID').multiselect();
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#pictureID').multiselect();
+            });
+        </script>
+
+        <br /><br />
+        <input type="submit" />
+    </form>
+<br />
+<a href="/users/all"><< back</a>
+<%- include("../includes/footer.ejs"); %>

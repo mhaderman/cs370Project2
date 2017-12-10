@@ -1,0 +1,26 @@
+<%- include("../includes/header.ejs", {title:"Routes - View All"}); %>
+
+<h1>Routes</h1>
+        <a href="/routes/add">Add New Route</a> <br />
+
+        <br />
+
+        <table border="1">
+            <tr><th>Name</th><th>Actions</th></tr>
+            <% for(var i=0; result.length > i; i++ ) { %>
+            <tr>
+                <td><a href="/routes/?routeID=<%= result[i].routeID %>"><%= result[i].routeName %></a></td>
+                <td>
+                    <button onclick="event.preventDefault();window.location.href='/routes/edit/?routeID=<%= result[i].routeID %>'">Edit</button>
+                    <form action="/routes/delete/" style="display:inline;">
+                        <input type="hidden" name="routeID" id="routeID" value="<%= result[i].routeID %>" />
+                        <input type="submit" value="Delete"/>
+                    </form>
+
+                </td>
+            </tr>
+            <% } %>
+        </table>
+<br />
+<a href="/"><< back</a>
+<%- include("../includes/footer.ejs"); %>

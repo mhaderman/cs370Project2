@@ -1,0 +1,30 @@
+<%- include("../includes/header.ejs", {title:"User - " + email[0].email}); %>
+
+<h1><%= email[0].email%></h1>
+
+    <ul>
+        <h2>Routes</h2>
+        <% for(var i = 0; routes.length > i; i++){ %>
+            <li><a href="/routes/routesViewByID/?routeID=<%= routes[i].routeID %>"> <%= routes[i].routeName %> </a></li>
+        <% } %>
+        <h2>Pictures</h2>
+        <% for(var i = 0; pictures.length > i; i++){ %>
+            <li><a href="/pictures/?pictureID=<%= pictures[i].pictureID %>"><%= pictures[i].picName %></a></li>
+        <% } %>
+    </ul>
+
+<!--<ul>
+        <li>Company Name: </%= result[0].company_name %/></li>
+        <li>Address(es):
+            <ul>
+                </% for(var i=0; result.length > i; i++ ) { %/>
+<li></%= result[i].street + ', ' + result[i].zip %/></li>
+</% } %/>
+            </ul>
+        </li>
+    </ul>
+-->
+<br />
+<a href="/users/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

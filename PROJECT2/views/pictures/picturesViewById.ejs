@@ -1,0 +1,23 @@
+<%- include("../includes/header.ejs", {title:"Picture - " + picture[0].picName}); %>
+
+<h1><%= picture[0].picName%></h1>
+<a href="<%= picture[0].path%>"><img src="<%= picture[0].path %>"> </a>
+
+    <ul>
+        <h2>Users</h2>
+        <% for(var i = 0; users.length > i; i++){ %>
+            <li><a href="/users/?userID=<%= users[i].userID %>"> <%= users[i].email %> </a></li>
+        <% } %>
+        <h2>Routes</h2>
+        <% for(var i = 0; routes.length > i; i++){ %>
+            <li><a href="/routes/?routeID=<%= routes[i].routeID %>"><%= routes[i].routeName %></a></li>
+        <% } %>
+        <h2>Coordinates</h2>
+        <% for(var i = 0; coordinates.length > i; i++){ %>
+        <li><a href="/coordinates/?coordID=<%= coordinates[i].coordID %>"><%= coordinates[i].lat + ', ' + coordinates[i].lon %></a></li>
+        <% } %>
+    </ul>
+    <br />
+<a href="/pictures/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

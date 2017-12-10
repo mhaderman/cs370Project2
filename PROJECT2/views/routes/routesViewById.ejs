@@ -1,0 +1,22 @@
+<%- include("../includes/header.ejs", {title:"Route - " + route[0].routeName}); %>
+
+<h1><%= route[0].routeName%></h1>
+<p><%= route[0].description%></p>
+    <ul>
+        <h2>Users</h2>
+        <% for(var i = 0; users.length > i; i++){ %>
+            <li><a href="/users/?userID=<%= users[i].userID %>"> <%= users[i].email %> </a></li>
+        <% } %>
+        <h2>Pictures</h2>
+        <% for(var i = 0; pictures.length > i; i++){ %>
+            <li><a href="/pictures/?pictureID=<%= pictures[i].pictureID%>"><%= pictures[i].picName %></a></li>
+        <% } %>
+        <h2>Coordinates</h2>
+        <% for(var i = 0; coordinates.length > i; i++){ %>
+        <li><a href="/coordinates/?coordID=<%= coordinates[i].coordID %>"><%= coordinates[i].lat + ', ' + coordinates[i].lon %></a></li>
+        <% } %>
+    </ul>
+    <br />
+<a href="/routes/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>
